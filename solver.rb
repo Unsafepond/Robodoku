@@ -52,4 +52,20 @@ class Solver
 		squares[8] << rows[8][6..8]
 		return squares
 	end
+	def spot_filler(row)
+		until row.include?(" ") == false 
+			row.sub!(" ", Random.rand(10).to_s)
+			# binding.pry
+		end
+	end
+	def blank_spot_detector(puzzle)
+		filled = [] 
+		rows(puzzle).each do |row|
+			if row.include?(" ")
+				filled << spot_filler(row)
+			else
+				filled << row
+			end
+		end
+	end
 end
