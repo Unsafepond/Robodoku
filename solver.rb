@@ -53,7 +53,7 @@ class Solver
 		return squares
 	end
 	def spot_filler(row)
-		until row.include?(" ") == false 
+		until row.include?(" ") == false && solved? 
 			row.sub!(" ", Random.rand(10).to_s)
 			# binding.pry
 		end
@@ -67,5 +67,57 @@ class Solver
 				filled << row
 			end
 		end
+	end
+	def solved?
+		solved = false
+    if sum_of_squares && sum_of_rows && sum_of_colunms
+    	solved = true
+    end
+    return solved
+	end
+	def sum_of_colunms(colunms)
+		characters = colunms.map do |colunm|
+			colunm.split("")
+		end
+		numbers = characters.flatten.map do |char|
+			if char == " "
+				char = 0
+			else
+				char.to_i
+			end
+		end
+		sum = numbers.inject(:+)
+
+		return sum / 9 == 45
+	end
+	def sum_of_rows(rows)
+		characters = rows.map do |row|
+			row.split("")
+		end
+		numbers = characters.flatten.map do |char|
+			if char == " "
+				char = 0
+			else
+				char.to_i
+			end
+		end
+		sum = numbers.inject(:+)
+
+		return sum / 9 == 45
+	end
+	def sum_of_squares(squares)
+		characters = squares.map do |square|
+			square.join.split("")
+		end
+		numbers = characters.flatten.map do |char|
+			if char == " "
+				char = 0
+			else
+				char.to_i
+			end
+		end
+		sum = numbers.inject(:+)
+
+		return sum / 9 == 45
 	end
 end
