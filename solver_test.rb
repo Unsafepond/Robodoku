@@ -105,7 +105,6 @@ class TestSolver < Minitest::Test
 	assert_equal false, solver.sum_of(squares)
 	end
 	def test_solver_solves_easy_puzzle
-		skip
 		puzzle =
 "8  5 4  7
   5 3 9  

@@ -3,9 +3,6 @@ class Solver
 	attr_accessor :puzzle, :squares, :rows, :colunms
 	def initialize(puzzle)
 		@puzzle = puzzle
-		@squares = squares(puzzle)
-		@rows = rows(puzzle)
-		@colunms = colunms(puzzle)
 	end
 	def rows(puzzle = puzzle)
 		puzzle.split("\n")
@@ -54,9 +51,9 @@ class Solver
 			end
 		end
 	end
-	def solved?(puzzle)
+	def solved?(solution = puzzle)
 		solved = false
-    if sum_of(squares) && sum_of(rows) && sum_of(colunms)
+    if sum_of(squares(solution)) && sum_of(rows(solution)) && sum_of(colunms(solution))
     	solved = true
     end
     return solved
@@ -79,8 +76,9 @@ class Solver
 	def solve
 		if solved?(puzzle)
 			return puzzle
-		else solved?(new_solution)
-				new_solution
+		else
+			possible_solutions = 1000.times.map {new_solution}
+			possible_solutions.detect { |solution| solved?(solution)}
 		end
 	end
 	def combine(puzzle_array)
