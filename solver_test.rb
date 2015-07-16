@@ -104,7 +104,7 @@ class TestSolver < Minitest::Test
 	squares = solver.squares(puzzle)
 	assert_equal false, solver.sum_of(squares)
 	end
-	def test_solver_solves_puzzle
+	def test_solver_solves_easy_puzzle
 		skip
 		puzzle =
 "8  5 4  7
@@ -132,6 +132,30 @@ solved =
 	def test_it_detects_solved_puzzle
 		puzzle = 
 "826594317
+715638942
+394721865
+163459278
+948267153
+257813694
+531942786
+482176539
+679385421"
+solved = 
+"826594317
+715638942
+394721865
+163459278
+948267153
+257813694
+531942786
+482176539
+679385421"
+	solver = Solver.new(puzzle)
+	assert_equal solved, solver.solve
+	end
+def test_it_solves_trivial_puzzle
+		puzzle = 
+"8 6594317
 715638942
 394721865
 163459278

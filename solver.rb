@@ -49,6 +49,8 @@ class Solver
 		rows(puzzle).map do |row|
 			if row.include?(" ")
 				spot_filler(row)
+			else
+				row
 			end
 		end
 	end
@@ -77,12 +79,8 @@ class Solver
 	def solve
 		if solved?(puzzle)
 			return puzzle
-		else
-			if solved?(new_solution) == false
-				solved?(new_solution)
-			else
-				return new_solution
-			end
+		else solved?(new_solution)
+				new_solution
 		end
 	end
 	def combine(puzzle_array)
