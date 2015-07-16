@@ -41,7 +41,7 @@ class Solver
 	end
 	def spot_filler(row)
 		until row.include?(" ") == false 
-			row.sub!(" ", Random.rand(10).to_s)
+			row.sub!(" ", Random.rand(1..9).to_s)
 		end
 		return row
 	end
